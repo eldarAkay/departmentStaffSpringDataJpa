@@ -1,1 +1,1 @@
-Department Staff application using Spring Data JPA
+Department Staff into management application using Spring Data JPA

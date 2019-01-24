@@ -1,14 +1,11 @@
 package com.spr.service;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import com.spr.model.Employee;
+import com.spr.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.spr.repository.EmployeeRepository;
+import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -20,6 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public Employee create(Employee employee) {
 		Employee createdEmployee = employee;
+
 		return employeeRepository.save(createdEmployee);
 	}
 	
@@ -34,6 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee delete(int id) {
 		Employee deletedEmployee = employeeRepository.findOne(id);
 		employeeRepository.delete(deletedEmployee);
+
 		return deletedEmployee;
 	}
 
@@ -52,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		updatedEmployee.setLastName(employee.getLastName());
 		updatedEmployee.setEmail(employee.getEmail());
 		updatedEmployee.setPhone(employee.getPhone());
+
 		return updatedEmployee;
 	}
-
 }

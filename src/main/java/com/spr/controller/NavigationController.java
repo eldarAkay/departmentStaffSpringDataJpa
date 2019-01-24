@@ -12,5 +12,4 @@ public class NavigationController {
 	public ModelAndView index() {
 		return new ModelAndView("index");
 	}
-	
 }

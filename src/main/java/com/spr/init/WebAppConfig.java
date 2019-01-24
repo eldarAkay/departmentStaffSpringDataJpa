@@ -1,10 +1,5 @@
 package com.spr.init;
 
-import java.util.Properties;
-
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -27,7 +25,6 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("com.spr.repository")
 public class WebAppConfig {
-
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
 	private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
@@ -67,6 +64,7 @@ public class WebAppConfig {
 	private Properties hibProperties() {
 		Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT,	env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+
 		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
 		return properties;
 	}
@@ -75,6 +73,7 @@ public class WebAppConfig {
 	public JpaTransactionManager transactionManager() {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+
 		return transactionManager;
 	}
 
@@ -84,7 +83,7 @@ public class WebAppConfig {
 		resolver.setPrefix("/WEB-INF/pages/");
 		resolver.setSuffix(".jsp");
 		resolver.setViewClass(JstlView.class);
+
 		return resolver;
 	}
-
 }
